@@ -1,0 +1,71 @@
+.titleStyle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .titleDescStyle {
+    // width: 100px;
+    display: none;
+  }
+
+  &:hover {
+    .titleDescStyle {
+      display: inline-block;
+      span {
+        margin: 0;
+      }
+    }
+  }
+
+  .titleTextStyle {
+    min-width: 100px;
+  }
+}
+
+.cardContainer {
+  display: flex;
+  // align-items: center;
+  justify-content: space-around;
+}
+
+.treeContainer {
+  min-width: 16%;
+  background-color: #f8f3eb;
+  border: 1px solid white;
+  box-shadow: 1px 1px 5px 1px grey;
+  padding: 10px;
+
+  .treeContainerTitle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.detailContainer {
+  width: 80%;
+}
+
+.treeWrap {
+  min-height: 800px;
+  background-color: #fff;
+  color: #333;
+  font-size: 14px;
+  .ant-tree-treenode {
+    border-top: 1px solid #eee !important;
+    line-height: 47px !important;
+    width: 100% !important;
+    align-items: center !important;
+
+    .ant-tree-switcher {
+      line-height: 47px !important;
+      height: 47px !important;
+      svg {
+        height: 47px !important;
+      }
+    }
+    .ant-tree-node-content-wrapper {
+      width: 100% !important;
+    }
+  }
+}

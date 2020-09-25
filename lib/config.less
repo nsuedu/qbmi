@@ -1,0 +1,97 @@
+@primary-color: #1890ff; // 组件高亮色
+// 功能色
+@success-color: #05cea; // 成功色
+@link-color: #1890ff; // 链接色
+@warning-color: #fad337; // 警告色
+@error-color: #fd5c5c; // 错误色
+@table-header-bg: #D6E7FA;
+
+// 字体及边框颜色
+@title-color: #333333; // 标题色
+@text-color: #666666; // 正文色
+@text-color-secondary: #999999; //次文本色
+@subsidiary-color: #999999; //辅助色
+@normal-color: #dfdfdf; // reset antd normal-color
+@disabled-color: #818181; //失效色 input disabled
+@muted-color: #dfdfdf; //失效色
+@empty-color: #a5b0c2; // 空白页提示文字
+@border-color-base: #dfdfdf; //边框色
+@border-color-cust: #cdcdd0; // 虚线及描边
+
+@margin-base: 16px;
+@margin-base-sm: 8px;
+@margin-base-lg: 24px;
+@padding-base: 16px;
+@padding-base-sm: 8px;
+@padding-base-lg: 24px;
+@form-item-margin-bottom: 24px; //表单验证提示行高
+@card-padding-base: 24px;
+
+@title-weight: bold; //字体加粗
+@font-size-title: 16px; //主标题
+@font-size-base: 14px; // 正文，次级标题,失效，链接
+@font-size-sub: 12px; // 次文本，辅助说明，错误提示
+@font-size-large: 30px; // 顶部总合计等数字
+@line-height-text: 22px;
+@border-color-split: #f0f0f0;
+@border-color-deep: #d8d8d8;
+
+@header-bg-color: #041528; // 顶部菜单背景
+@second-menu-bg-color: #3f91f7; // 二级菜单背景
+@third-menu-bg-color: #c2dbfc; // 三级菜单背景
+@dark-color: #333;
+@bg-color: #f1f2f5; //系统整体背景
+@exception-bgcolor: #F3F9FF;
+// 辅助色系
+@light-blue: #D6E7FA; //浅蓝，eg:表头
+@stripe-bg-color: #FBFBFB; // 表格斑马，卡片footer
+@content-bg: #fff; // 内容背景，卡片背景
+@foot-bg: #fbfbfb; // footer背景
+
+// 字体全局声明
+#font() {
+  //主标题
+  .title {
+    font-size: @font-size-title;
+    color: @title-color;
+    font-weight: @title-weight;
+    line-height: @line-height-text + 2;
+  }
+  //次级标题
+  .subTitle {
+    font-size: @font-size-base;
+    color: @title-color;
+    font-weight: @title-weight;
+    line-height: @line-height-text;
+  }
+  //正文
+  .text {
+    font-size: @font-size-base;
+    color: @text-color;
+    line-height: @line-height-text;
+  }
+  //次级文本，辅助说明
+  .subText {
+    font-size: @font-size-sub;
+    color: @text-color-secondary;
+    line-height: @line-height-text - 2;
+  }
+  //失效文本
+  .disabled {
+    font-size: @font-size-base;
+    color: @muted-color;
+    line-height: @line-height-text;
+  }
+  //链接文字
+  .link {
+    font-size: @font-size-base;
+    color: @link-color;
+    line-height: @line-height-text;
+  }
+  //错误提示
+  .error {
+    font-size: @font-size-sub;
+    color: @error-color;
+    line-height: @line-height-text - 2;
+  }
+}
