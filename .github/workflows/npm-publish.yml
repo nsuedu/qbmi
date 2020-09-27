@@ -19,7 +19,9 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - run: npm run build
+          registry-url: https://registry.npm.taobao.org
+      - run: yarn
+      - run: yarn run build
 
   publish-npm:
     needs: build
