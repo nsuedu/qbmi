@@ -33,8 +33,8 @@ class Tree extends React.Component<IProps, IState> {
     const { selectedKeys } = nextProp;
     if (selectedKeys && !isEqual(selectedKeys, preState.selectedKeys)) {
       return {
-        selectedKeys
-      }
+        selectedKeys,
+      };
     }
     return null;
   }
@@ -103,7 +103,6 @@ class Tree extends React.Component<IProps, IState> {
 
     if (onSelect) {
       onSelect(newselectedKeys, info);
-
     }
 
     if (!this.props.selectedKeys) {
@@ -111,11 +110,6 @@ class Tree extends React.Component<IProps, IState> {
         selectedKeys: newselectedKeys,
       });
     }
-
-
-
-
-
   };
 
   renderTitle = (obj: any, i: any) => {

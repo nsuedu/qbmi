@@ -1,9 +1,10 @@
 import React from 'react';
 import { Select as SelectAntd, Spin, Empty } from 'antd';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { debounce, isFunction, isEqual, uniqBy } from 'lodash';
+import { debounce, isFunction, isEqual, uniqBy, cloneDeep } from 'lodash';
 
 import { IProps, IState, IfetchData } from './interface.d';
+import { LabeledValue } from 'antd/lib/tree-select';
 
 const { Option } = SelectAntd;
 
@@ -12,7 +13,7 @@ export default class Select extends React.Component<IProps, IState> {
     isLoading: false, // 提供默认初始化时，就加载下拉数据
   };
 
-  static getDerivedStateFromProps(nextProps, currState) {
+  static getDerivedStateFromProps(nextProps: IProps, currState: IState) {
     const { value: originValue, options: originOptions } = nextProps;
     const { value, options } = currState;
     const state = {};
@@ -72,12 +73,18 @@ export default class Select extends React.Component<IProps, IState> {
     } else if (Array.isArray(res.dataSource)) {
       const newDatas = isFunction(dataHandler) ? dataHandler(res.dataSource) : res.dataSource;
 
-      this.setState(prev => ({
-        options: uniqBy([].concat(newDatas, prev.options), 'value'),
-        fetching: false,
-        currentPage: res.currentPage,
-        totalPage: res.totalPage,
-      }));
+
+      this.setState((prev: IState) => {
+        const newOptions = [...prev.options];
+        newOptions.push(...newDatas)
+        const newdata = uniqBy(newOptions, 'value')
+        return {
+          options: newdata,
+          fetching: false,
+          currentPage: res.currentPage,
+          totalPage: res.totalPage,
+        }
+      });
     }
   };
 
@@ -88,7 +95,7 @@ export default class Select extends React.Component<IProps, IState> {
 
   // 聚焦到下拉框时不防抖， 直接重新获取最新数据
   handleFocus = () => {
-    this.fetchData({});
+    this.fetchData({ input: '', page: 1 });
   };
 
   handleChange = val => {
@@ -157,9 +164,9 @@ export default class Select extends React.Component<IProps, IState> {
         onFocus={() => {
           this.handleFocus();
         }}
-        // onBlur={() => {
-        //   this.setState({ query: null });
-        // }}
+        onBlur={() => {
+          this.setState({ query: null, currentPage: 1, options: [] });
+        }}
         onChange={this.handleChange}
         placeholder="请选择"
         style={{ width: '100%' }}
