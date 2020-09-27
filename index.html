@@ -13,24 +13,11 @@
     />
     <link rel="stylesheet" href="./umi.css" />
     <script>
-      window.routerBase = location.pathname
-        .split("/")
-        .slice(0, -1)
-        .concat("")
-        .join("/");
-    </script>
-    <script>
-      window.publicPath =
-        location.protocol +
-        "//" +
-        location.hostname +
-        (location.port ? ":" + location.port : "") +
-        window.routerBase;
+      window.routerBase = "/qbmi/";
     </script>
     <script>
       //! umi version: 3.2.22
     </script>
-    <title>Hello qbmi!</title>
   </head>
   <body>
     <div id="root"></div>
