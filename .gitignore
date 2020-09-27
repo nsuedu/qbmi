@@ -44,3 +44,5 @@ yarn.lock
 **/es
 
 **/lib
+
+docs-dist
