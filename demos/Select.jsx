@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import _ from 'lodash';
+import React from 'react';
+
 import { Select } from 'qbmi';
 
 // 模拟请求获取数据

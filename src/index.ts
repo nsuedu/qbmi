@@ -3,7 +3,7 @@ export { default as Charts } from './Charts';
 export { default as PdfPreview } from './PdfPreview';
 export { default as Tree } from './Tree';
 export { default as TreeSelect } from './TreeSelect';
-export * as utils from './utils';
+export { default as utils } from './utils';
 export { default as TableOperation } from './TableOperation';
 export { default as FormModal } from './Modal/FormModal';
 export { default as InfoModal } from './Modal/InfoModal';
