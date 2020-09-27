@@ -22,6 +22,7 @@ jobs:
           registry-url: https://registry.npm.taobao.org
       - run: yarn
       - run: yarn run build
+      - run: npm version patch
 
   publish-npm:
     needs: build
