@@ -63,7 +63,8 @@
     "echarts": "^4.8.0",
     "lodash": "^4.17.20",
     "pdfjs-dist": "2.4.456",
-    "qs": "^6.9.3"
+    "qs": "^6.9.3",
+    "umi-plugin-gh-pages": "^0.2.0"
   },
   "devDependencies": {
     "@types/pdfjs-dist": "^2.1.5",

@@ -9,6 +9,9 @@ export default defineConfig({
   logo:
     'https://user-images.githubusercontent.com/9554297/83762004-a0761b00-a6a9-11ea-83b4-9c8ff721d4b8.png',
   outputPath: 'docs-dist',
+  publicPath: '/qbmi/',
+  base: '/qbmi',
+  exportStatic: {},
 
   dynamicImport: {},
   nodeModulesTransform: {
@@ -76,9 +79,6 @@ export default defineConfig({
       'antd',
     ],
   ],
-  // plugins: [
-  //   new AntdDayjsWebpackPlugin()
-  // ],
 
   theme: {
     '@success-color': '#4dc29b', // 成功色
