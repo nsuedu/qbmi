@@ -1,17 +1,17 @@
 {
   "name": "qbmi",
-  "version": "0.0.20",
+  "version": "0.0.22",
   "description": "组件库",
   "keywords": [
     "组件"
   ],
-  "homepage": "https://gitee.com/qbmi/qbmi",
+  "homepage": "https://github.com/nsuedu/qbmi",
   "bugs": {
-    "url": "https://gitee.com/qbmi/qbmi/issues"
+    "url": "https://github.com/nsuedu/qbmi/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://gitee.com/qbmi/qbmi.git"
+    "url": "git+https://github.com/nsuedu/qbmi.git"
   },
   "license": "MIT",
   "files": [
@@ -29,7 +29,7 @@
   "module": "es/index.js",
   "unpkg": "dist/index.js",
   "typings": "lib/index.d.ts",
-  "author": "hh",
+  "author": "huhao642178633",
   "contributors": [
     "ant"
   ],
