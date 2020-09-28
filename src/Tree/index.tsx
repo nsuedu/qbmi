@@ -242,16 +242,18 @@ class Tree extends React.Component<IProps, IState> {
 
     return (
       <div className="treeWrap">
-        <TreeAntd
-          defaultSelectedKeys={defaultSelectedKeys || []}
-          onExpand={this.onExpand}
-          expandedKeys={expandedKeys}
-          autoExpandParent={autoExpandParent}
-          onSelect={this.onSelect}
-          selectedKeys={selectedKeys}
-        >
-          {this.renderTreeNodes(treeData, 1)}
-        </TreeAntd>
+        {treeData?.length ? (
+          <TreeAntd
+            defaultSelectedKeys={defaultSelectedKeys || []}
+            onExpand={this.onExpand}
+            expandedKeys={expandedKeys}
+            autoExpandParent={autoExpandParent}
+            onSelect={this.onSelect}
+            selectedKeys={selectedKeys}
+          >
+            {this.renderTreeNodes(treeData, 1)}
+          </TreeAntd>
+        ) : null}
       </div>
     );
   }

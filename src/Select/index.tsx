@@ -14,12 +14,12 @@ export default class Select extends React.Component<IProps, IState> {
   };
 
   static getDerivedStateFromProps(nextProps: IProps, currState: IState) {
-    const { value: originValue, options: originOptions } = nextProps;
+    const { value: newValue, options: originOptions } = nextProps;
     const { value, options } = currState;
     const state = {};
 
-    if (!isEqual(originValue, value)) {
-      Object.assign(state, { value: originValue });
+    if (newValue && !isEqual(newValue, value)) {
+      Object.assign(state, { value: newValue });
     }
     // 外部通过异步请求获得下拉框数据，因此要在这里每次都接收一下
     if (Array.isArray(originOptions) && !isEqual(originOptions, options)) {
@@ -73,17 +73,16 @@ export default class Select extends React.Component<IProps, IState> {
     } else if (Array.isArray(res.dataSource)) {
       const newDatas = isFunction(dataHandler) ? dataHandler(res.dataSource) : res.dataSource;
 
-
       this.setState((prev: IState) => {
         const newOptions = [...prev.options];
-        newOptions.push(...newDatas)
-        const newdata = uniqBy(newOptions, 'value')
+        newOptions.push(...newDatas);
+        const newdata = uniqBy(newOptions, 'value');
         return {
           options: newdata,
           fetching: false,
           currentPage: res.currentPage,
           totalPage: res.totalPage,
-        }
+        };
       });
     }
   };
@@ -164,9 +163,9 @@ export default class Select extends React.Component<IProps, IState> {
         onFocus={() => {
           this.handleFocus();
         }}
-        onBlur={() => {
-          this.setState({ query: null, currentPage: 1, options: [] });
-        }}
+        // onBlur={() => {
+        //   this.setState({ query: null, currentPage: 1, options: [] });
+        // }}
         onChange={this.handleChange}
         placeholder="请选择"
         style={{ width: '100%' }}
