@@ -63,7 +63,7 @@ class Tree extends React.Component<IProps, IState> {
     let newselectedKeys = [...selectedKeys];
 
     if (newselectedKeys.length === 0 && info && info.node && info.node.props) {
-      const key = info.node.props.value || info.node.props.dataRef.key;
+      const key = info.node.props?.value;
 
       newselectedKeys = [key];
     }
