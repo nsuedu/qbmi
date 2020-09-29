@@ -4,7 +4,6 @@ import { Select as SelectAntd, Spin, Empty } from 'antd';
 import { debounce, isFunction, isEqual, uniqBy, cloneDeep } from 'lodash';
 
 import { IProps, IState, IfetchData } from './interface.d';
-import { LabeledValue } from 'antd/lib/tree-select';
 
 const { Option } = SelectAntd;
 
@@ -14,12 +13,12 @@ export default class Select extends React.Component<IProps, IState> {
   };
 
   static getDerivedStateFromProps(nextProps: IProps, currState: IState) {
-    const { value: originValue, options: originOptions } = nextProps;
+    const { value: newValue, options: originOptions } = nextProps;
     const { value, options } = currState;
     const state = {};
 
-    if (!isEqual(originValue, value)) {
-      Object.assign(state, { value: originValue });
+    if (newValue && !isEqual(newValue, value)) {
+      Object.assign(state, { value: newValue });
     }
     // 外部通过异步请求获得下拉框数据，因此要在这里每次都接收一下
     if (Array.isArray(originOptions) && !isEqual(originOptions, options)) {
@@ -73,24 +72,28 @@ export default class Select extends React.Component<IProps, IState> {
     } else if (Array.isArray(res.dataSource)) {
       const newDatas = isFunction(dataHandler) ? dataHandler(res.dataSource) : res.dataSource;
 
-
       this.setState((prev: IState) => {
-        const newOptions = [...prev.options];
-        newOptions.push(...newDatas)
-        const newdata = uniqBy(newOptions, 'value')
+        let newdata = newDatas;
+        if (page > 1) {
+          // @change by smallBear 当输入过滤字符，pageIndex 重置为1 返回新结果，当结果为空（渲染列表应该为空）， 为了区分分页返回结果需要追加到渲染列表 ，用pageIndex来做判断
+          const newOptions = [...prev.options];
+          newOptions.push(...newDatas);
+          newdata = uniqBy(newOptions, 'value');
+        }
+
         return {
           options: newdata,
           fetching: false,
           currentPage: res.currentPage,
           totalPage: res.totalPage,
-        }
+        };
       });
     }
   };
 
   // 搜索时防抖
   handleSearch = (str: string) => {
-    this.fetchData({ input: str });
+    this.fetchData({ input: str, page: 1 });
   };
 
   // 聚焦到下拉框时不防抖， 直接重新获取最新数据
@@ -164,9 +167,9 @@ export default class Select extends React.Component<IProps, IState> {
         onFocus={() => {
           this.handleFocus();
         }}
-        onBlur={() => {
-          this.setState({ query: null, currentPage: 1, options: [] });
-        }}
+        // onBlur={() => {
+        //   this.setState({ query: null, currentPage: 1, options: [] });
+        // }}
         onChange={this.handleChange}
         placeholder="请选择"
         style={{ width: '100%' }}
