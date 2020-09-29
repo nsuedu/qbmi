@@ -4,7 +4,6 @@ import { Select as SelectAntd, Spin, Empty } from 'antd';
 import { debounce, isFunction, isEqual, uniqBy, cloneDeep } from 'lodash';
 
 import { IProps, IState, IfetchData } from './interface.d';
-import { LabeledValue } from 'antd/lib/tree-select';
 
 const { Option } = SelectAntd;
 
