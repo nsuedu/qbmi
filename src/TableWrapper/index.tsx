@@ -98,24 +98,36 @@ class TableList extends Component {
 
   handleStandardTableChange = (pagination, filtersArg, sorter) => {
     const { handleTableChange, sortOrder } = this.props;
-
+    const { currentPage, pageSize, sorterParam } = this.state;
     if (handleTableChange) {
       handleTableChange(pagination, filtersArg, sorter);
     }
-
-    // @change by smallBear 只能通过外面传参，更新参数获取新的返回值，取消这儿的 请求
-    // if (sorter.order && sortOrder && sorter.order !== sortOrder) {
-    //   return;
-    // }
-    // this.setState(
-    //   {
-    //     currentPage: pagination.current,
-    //     pageSize: pagination.pageSize,
-    //   },
-    //   () => {
-    //     this.getTableData();
-    //   },
-    // );
+    let newsorterParam = '';
+    if (sorter.order && sorter.field) {
+      newsorterParam = `${sorter.order}${sorter.field}`;
+    }
+    if (sorterParam !== newsorterParam) {
+      this.setState(
+        {
+          currentPage: 1,
+          pageSize: pagination.pageSize,
+          sorterParam: newsorterParam,
+        },
+        () => {
+          this.getTableData();
+        },
+      );
+    } else {
+      this.setState(
+        {
+          currentPage: pagination.current,
+          pageSize: pagination.pageSize,
+        },
+        () => {
+          this.getTableData();
+        },
+      );
+    }
   };
 
   handleMenuClick = e => {
