@@ -1,7 +1,7 @@
 import React from 'react';
 import { Select as SelectAntd, Spin, Empty } from 'antd';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { debounce, isFunction, isEqual, uniqBy, cloneDeep } from 'lodash';
+import { debounce, isFunction, isEqual, uniqBy } from 'lodash';
 
 import { IProps, IState, IfetchData } from './interface.d';
 
