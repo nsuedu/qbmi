@@ -74,9 +74,14 @@ export default class Select extends React.Component<IProps, IState> {
       const newDatas = isFunction(dataHandler) ? dataHandler(res.dataSource) : res.dataSource;
 
       this.setState((prev: IState) => {
-        const newOptions = [...prev.options];
-        newOptions.push(...newDatas);
-        const newdata = uniqBy(newOptions, 'value');
+        let newdata = newDatas;
+        if (page > 1) {
+          // @change by smallBear 当输入过滤字符，pageIndex 重置为1 返回新结果，当结果为空（渲染列表应该为空）， 为了区分分页返回结果需要追加到渲染列表 ，用pageIndex来做判断
+          const newOptions = [...prev.options];
+          newOptions.push(...newDatas);
+          newdata = uniqBy(newOptions, 'value');
+        }
+
         return {
           options: newdata,
           fetching: false,
@@ -89,7 +94,7 @@ export default class Select extends React.Component<IProps, IState> {
 
   // 搜索时防抖
   handleSearch = (str: string) => {
-    this.fetchData({ input: str });
+    this.fetchData({ input: str, page: 1 });
   };
 
   // 聚焦到下拉框时不防抖， 直接重新获取最新数据
