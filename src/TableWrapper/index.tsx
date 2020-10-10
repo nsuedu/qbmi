@@ -45,13 +45,14 @@ class TableList extends Component {
     this.state = {
       pageSize: 10,
       currentPage: 1,
-      tableData: [],
       total: 0,
+      tableData: [],
       searchValues: {},
       selectedRows: [],
       searchParams: props.searchParams,
     };
     // this.tableWrapperRef = React.createRef();
+    this.sorterParamCache = '';
   }
 
   componentDidMount() {
@@ -97,37 +98,31 @@ class TableList extends Component {
   }
 
   handleStandardTableChange = (pagination, filtersArg, sorter) => {
-    const { handleTableChange, sortOrder } = this.props;
-    const { currentPage, pageSize, sorterParam } = this.state;
+    const { handleTableChange } = this.props;
+    const state = {
+      currentPage: pagination.current,
+      pageSize: pagination.pageSize,
+    };
+
     if (handleTableChange) {
       handleTableChange(pagination, filtersArg, sorter);
     }
-    let newsorterParam = '';
+
+    let newSorterParam = '';
     if (sorter.order && sorter.field) {
-      newsorterParam = `${sorter.order}${sorter.field}`;
+      newSorterParam = `${sorter.order}${sorter.field}`;
     }
-    if (sorterParam !== newsorterParam) {
-      this.setState(
-        {
-          currentPage: 1,
-          pageSize: pagination.pageSize,
-          sorterParam: newsorterParam,
-        },
-        () => {
-          this.getTableData();
-        },
-      );
-    } else {
-      this.setState(
-        {
-          currentPage: pagination.current,
-          pageSize: pagination.pageSize,
-        },
-        () => {
-          this.getTableData();
-        },
-      );
+
+    if (this.sorterParamCache !== newSorterParam) {
+      this.sorterParamCache = newSorterParam;
+      Object.assign(state, {
+        currentPage: 1,
+      });
     }
+
+    this.setState(state, () => {
+      this.getTableData();
+    });
   };
 
   handleMenuClick = e => {
@@ -238,7 +233,7 @@ class TableList extends Component {
       formItemLayout,
     } = this.props;
     const { mergeRowPage, mergePageSize, loading, scroll = { x: false } } = tableProps;
-    const { tableData, total, page, pageSize } = this.state;
+    const { tableData, total, currentPage, pageSize } = this.state;
     let data = {};
     if (mergeRowPage) {
       // 如果mergeRowPage为true，则表明是合并行的table，
@@ -250,8 +245,8 @@ class TableList extends Component {
       data = {
         list: tableData,
         pagination: {
-          current: page,
-          total: page * (currentPageSize - mergePageSize) + total,
+          current: currentPage,
+          total: currentPage * (currentPageSize - mergePageSize) + total,
           totalRecords: total,
           pageSize: currentPageSize,
           showSizeChanger: false,
@@ -260,7 +255,7 @@ class TableList extends Component {
     } else {
       data = {
         list: tableData,
-        pagination: { current: page, pageSize, total, totalRecords: total },
+        pagination: { current: currentPage, pageSize, total, totalRecords: total },
       };
     }
     const newTableProps = {

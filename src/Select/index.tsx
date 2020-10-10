@@ -17,7 +17,12 @@ export default class Select extends React.Component<IProps, IState> {
     const { value, options } = currState;
     const state = {};
 
-    if (newValue && !isEqual(newValue, value)) {
+    /**
+     * @change: By smallBear
+     * @Date: 2020-10-09
+     * @description: 有选项为 ‘全部’ 值为 <空字符串>，同时会存在 defaultValue有值，被value覆盖,所以移动defaultValue 至 render 里面了
+     */
+    if (!isEqual(newValue, value)) {
       Object.assign(state, { value: newValue });
     }
     // 外部通过异步请求获得下拉框数据，因此要在这里每次都接收一下
@@ -33,7 +38,7 @@ export default class Select extends React.Component<IProps, IState> {
     this.handleSearch = debounce(this.handleSearch, 400);
     this.state = {
       options: props.options || [],
-      value: props.defaultValue || [],
+      value: props.value || [],
       // 默认的"关键字"搜索条件
       query: props.defaultQuery || null,
       fetching: false,
@@ -115,6 +120,12 @@ export default class Select extends React.Component<IProps, IState> {
       // onChange时抛出 (当前选中的value,所有下拉框数据，当前选中的一行原始数据)
       onChangeProps(val, options, origin);
     }
+    //  else {
+    //   this.setState({
+    //     value: val,
+    //   });
+    // }
+
     if (!valueProps) {
       this.setState({
         value: val,
@@ -148,12 +159,13 @@ export default class Select extends React.Component<IProps, IState> {
   };
 
   render() {
-    const { notFoundTips, selectProps } = this.props;
+    const { notFoundTips, selectProps, defaultValue } = this.props;
     const { fetching, options, value, cancelDisable } = this.state;
     return (
       <SelectAntd
         // labelInValue
         allowClear
+        defaultValue={defaultValue}
         value={value}
         notFoundContent={fetching ? <Spin size="small" /> : <Empty tips={notFoundTips} />}
         filterOption={false}
