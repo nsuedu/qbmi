@@ -4,7 +4,9 @@ import { Alert } from 'antd';
 import FormModal from '../../Modal/FormModal';
 import StandardTable from '../../TableWrapper/StandardTable';
 
-const ImportSureContent = props => {
+import { IProps } from '../interface.d';
+
+const ImportSureContent: React.FC<IProps> = props => {
   const {
     disableFormRef,
     params: { statistics, columns, tableData },

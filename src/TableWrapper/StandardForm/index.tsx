@@ -79,7 +79,7 @@ const StandardForm: React.FC<IProps> = props => {
       isFunction(handleFinish) &&
       handleFinish(
         pickBy(newValues, value => {
-          return value !== undefined || value !== null;
+          return value !== undefined && value !== null;
         }),
         refresh,
       )
