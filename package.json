@@ -42,8 +42,12 @@
     "release": "npm run build && npm publish",
     "analyze": "cross-env ANALYZE=1 dumi build",
     "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
-    "test": "umi-test",
-    "test:coverage": "umi-test --coverage"
+    "test:coverage": "umi-test --coverage",
+    "pretest": "node ./tests/beforeTest",
+    "test": "umi test",
+    "test:all": "node ./tests/run-tests.js",
+    "test:component": "umi test ./src/components",
+    "tsc": "tsc --noEmit"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
@@ -60,6 +64,7 @@
     "@jiaminghi/data-view-react": "^1.2.3",
     "@umijs/plugin-esbuild": "^1.0.1",
     "cross-env": "^7.0.2",
+    "cross-port-killer": "^1.2.1",
     "echarts": "^4.8.0",
     "lodash": "^4.17.20",
     "pdfjs-dist": "2.4.456",
@@ -71,10 +76,15 @@
     "@umijs/preset-react": "1.x",
     "@umijs/test": "^3.0.5",
     "dumi": "^1.0.9",
+    "enzyme": "^3.11.0",
     "father-build": "^1.17.2",
     "gh-pages": "^3.0.0",
     "lint-staged": "^10.0.7",
     "prettier": "^1.19.1",
+    "pro-download": "1.0.1",
+    "puppeteer-core": "^5.0.0",
+    "stylelint": "^13.0.0",
+    "typescript": "^3.9.7",
     "yorkie": "^2.0.0"
   },
   "browserslist": [
