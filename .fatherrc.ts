@@ -1,7 +1,19 @@
 export default {
-  esm: 'babel',
-  cjs: 'babel',
+  cjs: { type: 'babel', lazy: true },
+  esm: {
+    type: 'babel',
+    importLibToEs: true,
+  },
   extractCSS: true,
   disableTypeCheck: true,
-  extraBabelPlugins: [['import', { libraryName: 'antd', libraryDirectory: 'es', style: true }]],
+  extraBabelPlugins: [
+    [
+      'import',
+      {
+        libraryName: 'antd',
+        libraryDirectory: 'es',
+        style: true,
+      },
+    ],
+  ],
 };

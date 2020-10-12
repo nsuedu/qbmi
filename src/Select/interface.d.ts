@@ -3,7 +3,7 @@ import { LabeledValue } from 'antd/lib/select/index.d';
 export interface IProps {
   isLoading?: boolean;
   options?: LabeledValue[];
-  dataServer: (val: any) => Promise<any>;
+  dataServer?: (val: any) => Promise<any>;
   dataHandler?: (val: LabeledValue[]) => LabeledValue[];
   onChange?: (value: ValueType, option: OptionsType[number] | OptionsType) => void;
 }

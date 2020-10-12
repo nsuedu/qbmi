@@ -17,6 +17,7 @@ yarn-error.log
 
 /coverage
 .idea
+yarn.lock
 package-lock.json
 *bak
 .vscode
@@ -35,14 +36,9 @@ functions/*
 screenshot
 .firebase
 .eslintcache
-/settings.json
 
-yarn.lock
+build
 
-/cspell.json
+es
 
-**/es
-
-**/lib
-
-docs-dist
+lib
