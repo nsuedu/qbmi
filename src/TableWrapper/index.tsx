@@ -125,7 +125,7 @@ class TableList extends Component {
     });
   };
 
-  handleMenuClick = e => {
+  handleMenuClick = (e) => {
     const { handleMenuClick } = this.props;
     const { selectedRows } = this.state;
     if (!selectedRows) return;
@@ -192,7 +192,7 @@ class TableList extends Component {
     }
   };
 
-  onSearch = val => {
+  onSearch = (val) => {
     this.setState(
       {
         searchValues: val,

@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { Form, Input, Button, DatePicker, Radio, TreeSelect, Row, Col, InputNumber } from 'antd';
-
 import moment from 'moment';
 import { isFunction, pickBy, isObject, flatMap } from 'lodash';
 
@@ -23,7 +21,7 @@ interface IProps {
   onFormReset?: Function;
   [propName: string]: any;
 }
-const StandardForm: React.FC<IProps> = props => {
+const StandardForm: React.FC<IProps> = (props) => {
   const {
     onFinish: handleFinish,
     options,
@@ -38,7 +36,7 @@ const StandardForm: React.FC<IProps> = props => {
   useEffect(() => {
     const thisValues = {};
     if (initialValues) {
-      Object.keys(initialValues).forEach(item => {
+      Object.keys(initialValues).forEach((item) => {
         if (isObject(initialValues[item])) {
           if (initialValues[item].type === 'time') {
             thisValues[`time-${item}`] = moment(initialValues[item].value);
@@ -57,7 +55,7 @@ const StandardForm: React.FC<IProps> = props => {
   const timeArr = {};
   const onFinish = (values: any, refresh?: string) => {
     const newValues = {};
-    Object.keys(values).forEach(item => {
+    Object.keys(values).forEach((item) => {
       if (item.indexOf('times-') >= 0) {
         const name = item.split('-')[1];
         newValues[timeArr[name][0]] =
@@ -78,7 +76,7 @@ const StandardForm: React.FC<IProps> = props => {
     return (
       isFunction(handleFinish) &&
       handleFinish(
-        pickBy(newValues, value => {
+        pickBy(newValues, (value) => {
           return value !== undefined && value !== null;
         }),
         refresh,
@@ -110,7 +108,7 @@ const StandardForm: React.FC<IProps> = props => {
   }
   // 渲染单选按钮选项
   const renderRadio = (list: RenderRadioItem[] = []) => {
-    return list.map(item => {
+    return list.map((item) => {
       return (
         <Radio key={item.value} value={item.value}>
           {item.text}
@@ -263,47 +261,47 @@ const StandardForm: React.FC<IProps> = props => {
         </Form.Item>
       </Col>
     ) : (
-      <Col key={item.name} {...colSpan}>
-        <Form.Item label={item.label} labelCol={{ ...formSpan }} style={{ marginBottom: 0 }}>
-          <Form.Item
-            name={item.names[0]}
-            rules={[{ required: false }]}
-            style={{ display: 'inline-block' }}
-          >
-            <InputNumber />
-          </Form.Item>
-          <span
-            style={{
-              display: 'inline-block',
-              height: '32px',
-              lineHeight: '32px',
-              margin: '0 8px 0 8px',
-            }}
-          >
-            至
+        <Col key={item.name} {...colSpan}>
+          <Form.Item label={item.label} labelCol={{ ...formSpan }} style={{ marginBottom: 0 }}>
+            <Form.Item
+              name={item.names[0]}
+              rules={[{ required: false }]}
+              style={{ display: 'inline-block' }}
+            >
+              <InputNumber />
+            </Form.Item>
+            <span
+              style={{
+                display: 'inline-block',
+                height: '32px',
+                lineHeight: '32px',
+                margin: '0 8px 0 8px',
+              }}
+            >
+              至
           </span>
-          <Form.Item
-            name={item.names[1]}
-            rules={[{ required: false }]}
-            style={{ display: 'inline-block' }}
-          >
-            <InputNumber />
+            <Form.Item
+              name={item.names[1]}
+              rules={[{ required: false }]}
+              style={{ display: 'inline-block' }}
+            >
+              <InputNumber />
+            </Form.Item>
           </Form.Item>
-        </Form.Item>
-      </Col>
-    );
+        </Col>
+      );
     // });
   };
 
   // 渲染表单行
   const renderRow = (list?: any[]) => {
     // eslint-disable-next-line no-undef
-    const fieldsArr = Array.isArray(list) ? flatMap(list, item => item) : [];
+    const fieldsArr = Array.isArray(list) ? flatMap(list, (item) => item) : [];
 
     return fieldsArr.length ? (
       <Row gutter={24}>
         {/* <Row> */}
-        {fieldsArr.map(item => {
+        {fieldsArr.map((item) => {
           return renderItems(item);
         })}
       </Row>

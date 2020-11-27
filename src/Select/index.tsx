@@ -106,15 +106,15 @@ export default class Select extends React.Component<IProps, IState> {
     this.fetchData({ input: '', page: 1 });
   };
 
-  handleChange = val => {
+  handleChange = (val) => {
     const { value: valueProps, onChange: onChangeProps, selectProps = {} } = this.props;
 
     const { options } = this.state;
 
     const origin =
       selectProps.labelInValue && val
-        ? options.find(items => items.value === val.value)
-        : options.find(items => items.value === val);
+        ? options.find((items) => items.value === val.value)
+        : options.find((items) => items.value === val);
 
     if (isFunction(onChangeProps)) {
       // onChange时抛出 (当前选中的value,所有下拉框数据，当前选中的一行原始数据)
@@ -133,7 +133,7 @@ export default class Select extends React.Component<IProps, IState> {
     }
   };
 
-  companyScroll = e => {
+  companyScroll = (e) => {
     const { clientHeight, scrollHeight, scrollTop } = e.target;
     const { currentPage, totalPage, fetching } = this.state;
 
@@ -170,7 +170,7 @@ export default class Select extends React.Component<IProps, IState> {
         notFoundContent={fetching ? <Spin size="small" /> : <Empty tips={notFoundTips} />}
         filterOption={false}
         showSearch
-        onSearch={val => {
+        onSearch={(val) => {
           const str = val.replace(/\s+/g, '');
           // if (str) {
           this.handleSearch(str);

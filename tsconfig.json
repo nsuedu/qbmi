@@ -1,31 +1,43 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
-    "outDir": "build/dist",
-    "module": "es6",
+    "baseUrl": "./",
     "target": "esnext",
-    "lib": ["es6", "dom"],
-    "sourceMap": true,
-    "baseUrl": ".",
-    "jsx": "react",
-    "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
+    "jsx": "preserve",
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "suppressImplicitAnyIndexErrors": true,
+    "declaration": true,
+    "skipLibCheck": true,
+
+    "outDir": "build/dist",
+    "module": "es6",
+    "lib": ["es6", "dom"],
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
     "noUnusedLocals": true,
     "allowJs": true,
-    "skipLibCheck": true,
-    "experimentalDecorators": true,
-    "strict": true,
     "paths": {
-      "@/*": ["./src/*"],
-      "@@/*": ["./src/.umi/*"]
+      "@/*": ["./src/*"]
     },
-    "declaration": true,
-    "esModuleInterop": true,
-    "types": ["@types/pdfjs-dist"]
+    "types": ["@types/pdfjs-dist", "@types/jest"]
   },
+  "include": [
+    "src/**/*",
+    "tests/**/*",
+    "test/**/*",
+    "__test__/**/*",
+    "typings/**/*",
+    "config/**/*",
+    ".eslintrc.js",
+    ".stylelintrc.js",
+    ".prettierrc.js",
+    "jest.config.js"
+  ],
   "exclude": [
     "node_modules",
     "build",

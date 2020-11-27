@@ -45,4 +45,6 @@ function InfoModal<P>(WrappedComponent: React.ComponentType<P>) {
   };
 }
 
+export { InfoModal };
+
 export default InfoModal;
