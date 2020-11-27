@@ -79,9 +79,9 @@ function FormModal(FormComponent: React.ComponentType<Iprops>) {
         loading: true,
       });
       promise
-        .then(() => {
+        .then(v => {
           if (onOk) {
-            onOk();
+            onOk(v);
           }
         })
         .finally(() => {
