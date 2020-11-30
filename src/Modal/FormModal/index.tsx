@@ -160,8 +160,8 @@ function FormModal(FormComponent: React.ComponentType<Iprops>) {
           // confirmLoading={loading}
           // okText={okText}
           // cancelText={cancelText}
-
           // onOk={this.handleOk}
+
           onCancel={this.handleCancel}
           destroyOnClose
           maskClosable={false}
