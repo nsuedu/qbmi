@@ -261,35 +261,35 @@ const StandardForm: React.FC<IProps> = (props) => {
         </Form.Item>
       </Col>
     ) : (
-      <Col key={item.name} {...colSpan}>
-        <Form.Item label={item.label} labelCol={{ ...formSpan }} style={{ marginBottom: 0 }}>
-          <Form.Item
-            name={item.names[0]}
-            rules={[{ required: false }]}
-            style={{ display: 'inline-block' }}
-          >
-            <InputNumber />
-          </Form.Item>
-          <span
-            style={{
-              display: 'inline-block',
-              height: '32px',
-              lineHeight: '32px',
-              margin: '0 8px 0 8px',
-            }}
-          >
-            至
+        <Col key={item.name} {...colSpan}>
+          <Form.Item label={item.label} labelCol={{ ...formSpan }} style={{ marginBottom: 0 }}>
+            <Form.Item
+              name={item.names[0]}
+              rules={[{ required: false }]}
+              style={{ display: 'inline-block' }}
+            >
+              <InputNumber />
+            </Form.Item>
+            <span
+              style={{
+                display: 'inline-block',
+                height: '32px',
+                lineHeight: '32px',
+                margin: '0 8px 0 8px',
+              }}
+            >
+              至
           </span>
-          <Form.Item
-            name={item.names[1]}
-            rules={[{ required: false }]}
-            style={{ display: 'inline-block' }}
-          >
-            <InputNumber />
+            <Form.Item
+              name={item.names[1]}
+              rules={[{ required: false }]}
+              style={{ display: 'inline-block' }}
+            >
+              <InputNumber />
+            </Form.Item>
           </Form.Item>
-        </Form.Item>
-      </Col>
-    );
+        </Col>
+      );
     // });
   };
 
