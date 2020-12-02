@@ -5,7 +5,10 @@ export interface IProps {
   options?: LabeledValue[];
   dataServer?: (val: any) => Promise<any>;
   dataHandler?: (val: LabeledValue[]) => LabeledValue[];
-  onChange?: (value: ValueType, option: OptionsType[number] | OptionsType) => void;
+  onChange?: (
+    value: ValueType,
+    option: OptionsType[number] | OptionsType,
+  ) => void;
 }
 
 export interface IState {

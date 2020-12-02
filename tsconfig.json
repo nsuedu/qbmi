@@ -1,52 +1,27 @@
 {
-  "compileOnSave": true,
   "compilerOptions": {
-    "baseUrl": "./",
     "target": "esnext",
+    "module": "esnext",
     "moduleResolution": "node",
-    "jsx": "preserve",
+    "importHelpers": true,
+    "jsx": "react",
     "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitReturns": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "declaration": true,
-    "skipLibCheck": true,
-
-    "outDir": "build/dist",
-    "module": "es6",
-    "lib": ["es6", "dom"],
     "sourceMap": true,
-    "allowSyntheticDefaultImports": true,
-    "noUnusedLocals": true,
-    "allowJs": true,
+    "baseUrl": "./",
+    "strict": true,
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["src/*"],
+      "@@/*": ["src/.umi/*"]
     },
-    "types": ["@types/pdfjs-dist", "@types/jest"]
+    "allowSyntheticDefaultImports": true
   },
-  "include": [
-    "src/**/*",
-    "tests/**/*",
-    "test/**/*",
-    "__test__/**/*",
-    "typings/**/*",
-    "config/**/*",
-    ".eslintrc.js",
-    ".stylelintrc.js",
-    ".prettierrc.js",
-    "jest.config.js"
-  ],
   "exclude": [
     "node_modules",
-    "build",
-    "dist",
-    "scripts",
-    "src/.umi/*",
-    "webpack",
-    "jest",
     "lib",
-    "es"
+    "es",
+    "dist",
+    "typings",
+    "**/__test__",
+    "test"
   ]
 }

@@ -44,7 +44,10 @@ const eleResize = {
   },
   _handleObjectLoad() {
     this.contentDocument.defaultView.__resizeTrigger__ = this.__resizeElement__;
-    this.contentDocument.defaultView.addEventListener('resize', eleResize._handleResize);
+    this.contentDocument.defaultView.addEventListener(
+      'resize',
+      eleResize._handleResize,
+    );
   },
 };
 if (document.attachEvent) {

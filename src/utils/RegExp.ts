@@ -181,7 +181,10 @@ const NUMBER = {
 };
 
 interface Ireg {
-  validator: (rule: any, value: number | string | null | undefined) => Promise<void>;
+  validator: (
+    rule: any,
+    value: number | string | null | undefined,
+  ) => Promise<void>;
   required?: boolean;
   message?: string;
 }

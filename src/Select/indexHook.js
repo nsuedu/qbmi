@@ -34,10 +34,6 @@ export default props => {
     return ref.current;
   };
 
-  console.log('====================================');
-  console.log(usePrevious(query));
-  console.log('====================================');
-
   const debounceSearch = useCallback(async () => {
     if (Array.isArray(optionsProps) && optionsProps.length > 0) {
       setLoading(false);

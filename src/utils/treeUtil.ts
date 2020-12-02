@@ -26,20 +26,28 @@ export const generateList = (data: ITree[], dataList: ITree[]) => {
 
 // 一维数组转化为 树形数据， 前提:存在parentId , 根节点parentId===0
 export const arrayToTree = (datas: ITree[]) => {
-  const root = datas.filter(item => !item.parentId || `${item.parentId}` === '0');
+  const root = datas.filter(
+    item => !item.parentId || `${item.parentId}` === '0',
+  );
   if (root.length) {
     const obj = { ...root[0] };
 
-    const secondData = datas.filter(item => `${item.parentId}` === root[0].value);
+    const secondData = datas.filter(
+      item => `${item.parentId}` === root[0].value,
+    );
     if (secondData.length) {
       obj.children = secondData.map(secondItem => {
         const newsecondItem = { ...secondItem };
 
-        const thirdData = datas.filter(item => `${item.parentId}` === secondItem.value);
+        const thirdData = datas.filter(
+          item => `${item.parentId}` === secondItem.value,
+        );
         if (thirdData.length) {
           newsecondItem.children = thirdData.map(thirdItem => {
             const newthirdItem = { ...thirdItem };
-            const fourData = datas.filter(item => `${item.parentId}` === thirdItem.value);
+            const fourData = datas.filter(
+              item => `${item.parentId}` === thirdItem.value,
+            );
             if (fourData.length) {
               newthirdItem.children = fourData;
             }
@@ -84,7 +92,10 @@ export const getDataByKeyFromTreeData = (params: IGetDataByKeyFromTreeData) => {
 };
 
 // 根据 key获取它的父节点信息
-export const getParentInfoByKey = (key: string, tree: ITree[]): ITree | undefined => {
+export const getParentInfoByKey = (
+  key: string,
+  tree: ITree[],
+): ITree | undefined => {
   let parentInfo;
   for (let i = 0; i < tree.length; i = +1) {
     const node = tree[i];
@@ -150,9 +161,13 @@ export const transformTree = (obj: ITransformTree) => {
       if (item.childList) {
         item.children = item.childList;
       }
-      const bool1 = !(Array.isArray(item.children) && item.children.length > 0) && lastLeafDisabled;
+      const bool1 =
+        !(Array.isArray(item.children) && item.children.length > 0) &&
+        lastLeafDisabled;
       const bool2 =
-        Array.isArray(item.children) && item.children.length > 0 && onlyLastleafNoDisabled;
+        Array.isArray(item.children) &&
+        item.children.length > 0 &&
+        onlyLastleafNoDisabled;
       const bool3 = item.disabled;
 
       const objData: ITree = {
@@ -161,7 +176,9 @@ export const transformTree = (obj: ITransformTree) => {
         value: `${key}`,
         origin: item,
         parentId: (item.pid && `${item.pid}`) || null,
-        isChecked: Boolean(item.isChecked !== undefined ? item.isChecked : item.selection === 1),
+        isChecked: Boolean(
+          item.isChecked !== undefined ? item.isChecked : item.selection === 1,
+        ),
         disabled: Boolean(bool2 || bool1 || bool3),
         // children: [],
         number: item[number] ? `${item[number]}${unitName}` : 0,
@@ -181,7 +198,11 @@ export const transformTree = (obj: ITransformTree) => {
           unitName,
         });
       }
-      if (hideFiled && item[hideFiled] !== undefined && `${item[hideFiled]}` === '0') {
+      if (
+        hideFiled &&
+        item[hideFiled] !== undefined &&
+        `${item[hideFiled]}` === '0'
+      ) {
         secondResult.push(objData);
       } else {
         result.push(objData);

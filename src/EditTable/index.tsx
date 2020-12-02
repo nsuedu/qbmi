@@ -185,7 +185,10 @@ interface EditTableState {
   dataSource: any[];
 }
 
-class EditableTable extends React.Component<EditableTableProps, EditTableState> {
+class EditableTable extends React.Component<
+  EditableTableProps,
+  EditTableState
+> {
   static getDerivedStateFromProps(nextProp: any, preState: any) {
     const { columns, dataSource } = nextProp;
     const state: {
@@ -291,7 +294,9 @@ class EditableTable extends React.Component<EditableTableProps, EditTableState> 
     // 同步表单中的数据
     dataSource = dataSource.map(data => {
       const dataClone = { ...data };
-      const formItem = this.forms.find(formData => formData.key === dataClone.key);
+      const formItem = this.forms.find(
+        formData => formData.key === dataClone.key,
+      );
       if (formItem) {
         const formData = formItem.form.getFieldsValue();
         const transferData = transformData(formData);
@@ -348,7 +353,9 @@ class EditableTable extends React.Component<EditableTableProps, EditTableState> 
       if (
         typeof column.title === 'string' &&
         column.rules &&
-        column.rules.some((rule: { required: boolean }) => rule.required === true)
+        column.rules.some(
+          (rule: { required: boolean }) => rule.required === true,
+        )
       ) {
         column.title = (
           <span className="ant-form-item-label">
@@ -372,7 +379,10 @@ class EditableTable extends React.Component<EditableTableProps, EditTableState> 
           if (hasDelete.confirm) {
             return (text: any, record: any) => {
               return (
-                <Popconfirm title="确定要删除吗?" onConfirm={() => this.handleDelete(record.key)}>
+                <Popconfirm
+                  title="确定要删除吗?"
+                  onConfirm={() => this.handleDelete(record.key)}
+                >
                   <a className="text-error">删除</a>
                 </Popconfirm>
               );
@@ -380,7 +390,10 @@ class EditableTable extends React.Component<EditableTableProps, EditTableState> 
           }
           return (text: any, record: any) => {
             return (
-              <a onClick={() => this.handleDelete(record.key)} className="text-error">
+              <a
+                onClick={() => this.handleDelete(record.key)}
+                className="text-error"
+              >
                 删除
               </a>
             );

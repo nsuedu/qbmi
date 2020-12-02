@@ -53,7 +53,10 @@ export default class Select extends React.Component<IProps, IState> {
     如果在一个列表(table)中，每一行都存在此下拉框组件，为了避免重复请求
     列表中的下拉框存在value时才请求，下拉框的数据
     */
-    if (isLoading || (value && !(Array.isArray(optionsProps) && optionsProps.length))) {
+    if (
+      isLoading ||
+      (value && !(Array.isArray(optionsProps) && optionsProps.length))
+    ) {
       this.fetchData({});
     }
   }
@@ -75,7 +78,9 @@ export default class Select extends React.Component<IProps, IState> {
       const newDatas = isFunction(dataHandler) ? dataHandler(res) : res;
       this.setState({ options: newDatas, fetching: false });
     } else if (Array.isArray(res.dataSource)) {
-      const newDatas = isFunction(dataHandler) ? dataHandler(res.dataSource) : res.dataSource;
+      const newDatas = isFunction(dataHandler)
+        ? dataHandler(res.dataSource)
+        : res.dataSource;
 
       this.setState((prev: IState) => {
         let newdata = newDatas;
@@ -106,15 +111,19 @@ export default class Select extends React.Component<IProps, IState> {
     this.fetchData({ input: '', page: 1 });
   };
 
-  handleChange = (val) => {
-    const { value: valueProps, onChange: onChangeProps, selectProps = {} } = this.props;
+  handleChange = val => {
+    const {
+      value: valueProps,
+      onChange: onChangeProps,
+      selectProps = {},
+    } = this.props;
 
     const { options } = this.state;
 
     const origin =
       selectProps.labelInValue && val
-        ? options.find((items) => items.value === val.value)
-        : options.find((items) => items.value === val);
+        ? options.find(items => items.value === val.value)
+        : options.find(items => items.value === val);
 
     if (isFunction(onChangeProps)) {
       // onChange时抛出 (当前选中的value,所有下拉框数据，当前选中的一行原始数据)
@@ -133,7 +142,7 @@ export default class Select extends React.Component<IProps, IState> {
     }
   };
 
-  companyScroll = (e) => {
+  companyScroll = e => {
     const { clientHeight, scrollHeight, scrollTop } = e.target;
     const { currentPage, totalPage, fetching } = this.state;
 
@@ -167,10 +176,12 @@ export default class Select extends React.Component<IProps, IState> {
         allowClear
         defaultValue={defaultValue}
         value={value}
-        notFoundContent={fetching ? <Spin size="small" /> : <Empty tips={notFoundTips} />}
+        notFoundContent={
+          fetching ? <Spin size="small" /> : <Empty tips={notFoundTips} />
+        }
         filterOption={false}
         showSearch
-        onSearch={(val) => {
+        onSearch={val => {
           const str = val.replace(/\s+/g, '');
           // if (str) {
           this.handleSearch(str);

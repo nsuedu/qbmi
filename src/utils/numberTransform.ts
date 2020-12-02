@@ -16,14 +16,20 @@ export default function tranNumber(num, point) {
   }
   if (numStr.length >= 6 && numStr.length <= 8) {
     // 如果数字大于6位,小于8位,让其数字后面加单位万
-    const decimal = numStr.substring(numStr.length - 4, numStr.length - 4 + point);
+    const decimal = numStr.substring(
+      numStr.length - 4,
+      numStr.length - 4 + point,
+    );
     // 由千位,百位组成的一个数字
     // eslint-disable-next-line radix
     return `${parseFloat(`${parseInt(num / 10000)}.${decimal}`)}万`;
   }
   if (numStr.length > 8) {
     // 如果数字大于8位,让其数字后面加单位亿
-    const decimal = numStr.substring(numStr.length - 8, numStr.length - 8 + point);
+    const decimal = numStr.substring(
+      numStr.length - 8,
+      numStr.length - 8 + point,
+    );
     // eslint-disable-next-line radix
     return `${parseFloat(`${parseInt(num / 100000000)}.${decimal}`)}亿`;
   }

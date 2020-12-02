@@ -85,7 +85,9 @@ class TreeSelect extends React.Component<IProps, IState> {
           value={`${item.value}`}
           title={item.title}
         >
-          {item.children && item.children.length > 0 && this.renderNode(item.children)}
+          {item.children &&
+            item.children.length > 0 &&
+            this.renderNode(item.children)}
         </TreeNode>
       );
     });
@@ -118,7 +120,12 @@ class TreeSelect extends React.Component<IProps, IState> {
         </TreeSelectAntd>
       );
     }
-    return <TreeSelectAntd key="null" style={props.style ? props.style : { width: '100%' }} />;
+    return (
+      <TreeSelectAntd
+        key="null"
+        style={props.style ? props.style : { width: '100%' }}
+      />
+    );
   }
 }
 

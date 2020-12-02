@@ -58,7 +58,10 @@ class Tree extends React.Component<IProps, IState> {
 
   onSelect = (selectedKeys: (string | number)[], info: any) => {
     const { onSelect } = this.props;
-    const { selectedKeys: oldselectedKeys, expandedKeys: oldexpandedKeys } = this.state;
+    const {
+      selectedKeys: oldselectedKeys,
+      expandedKeys: oldexpandedKeys,
+    } = this.state;
 
     let newselectedKeys = [...selectedKeys];
 
@@ -72,7 +75,9 @@ class Tree extends React.Component<IProps, IState> {
       let newkeys: (string | number)[] = [];
 
       if (oldexpandedKeys.includes(newselectedKeys[0])) {
-        newkeys = oldexpandedKeys.filter(item => !newselectedKeys.includes(item));
+        newkeys = oldexpandedKeys.filter(
+          item => !newselectedKeys.includes(item),
+        );
       } else {
         newkeys = [...oldexpandedKeys, newselectedKeys[0]];
       }
@@ -113,13 +118,24 @@ class Tree extends React.Component<IProps, IState> {
   };
 
   renderTitle = (obj: any, i: any) => {
-    const { onAdd, onDelete, onEdit, deleteText, addText, editText, noEditAndDelete } = this.props;
+    const {
+      onAdd,
+      onDelete,
+      onEdit,
+      deleteText,
+      addText,
+      editText,
+      noEditAndDelete,
+    } = this.props;
     const { limit } = this.state;
     const noEditAndDeleteItem = obj.origin && obj.origin[noEditAndDelete];
     return (
       <div className="titleStyle">
         <div className="titleTextStyle">
-          <span style={{ display: 'inline-block', marginRight: 2 }}> {obj.title}</span>
+          <span style={{ display: 'inline-block', marginRight: 2 }}>
+            {' '}
+            {obj.title}
+          </span>
           {obj.number && <span> {`(${obj.number})`}</span>}
         </div>
         {obj.value !== '0' || obj.title !== '全部' ? (
@@ -142,7 +158,10 @@ class Tree extends React.Component<IProps, IState> {
                 }}
               >
                 <Popover content={addText}>
-                  <IconFont type="iconadd" style={{ marginRight: 6, color: '#40a9ff' }} />
+                  <IconFont
+                    type="iconadd"
+                    style={{ marginRight: 6, color: '#40a9ff' }}
+                  />
                 </Popover>
               </span>
             )}
@@ -232,7 +251,9 @@ class Tree extends React.Component<IProps, IState> {
           </TreeNode>
         );
       }
-      return <TreeNode key={item.key} {...item} title={this.renderTitle(item, i)} />;
+      return (
+        <TreeNode key={item.key} {...item} title={this.renderTitle(item, i)} />
+      );
     });
   };
 
