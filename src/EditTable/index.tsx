@@ -1,11 +1,5 @@
-import React, {
-  useContext,
-  useEffect,
-  Dispatch,
-  //  useState, useRef
-} from 'react';
+import React, { useContext, useEffect, Dispatch } from 'react';
 import { Table, Button, Form, Popconfirm } from 'antd';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { PlusOutlined } from '@ant-design/icons';
 import './index.less';
 
@@ -26,9 +20,6 @@ const transformData = (data: any[] | any) => {
     cleanData[pureKey] = value;
   }
 
-  // const dataString = JSON.stringify(data);
-  // const filterString = dataString.replace(/_\[[^"]+\]"/g, '"');
-  // return JSON.parse(filterString);
   return cleanData;
 };
 
